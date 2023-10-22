@@ -9,6 +9,14 @@ body.home {
     background-color: black;
 }
 
+.page {
+    margin: 0;
+}
+
+mark {
+    display: inline-block;
+}
+
 h1,
 h2,
 h3 {
@@ -16,9 +24,10 @@ h3 {
 }
 
 h1 {
-    /* margin: 20px 0 50px 0; */
-    border-bottom: 5px solid #25f;
+    margin: 20px 0 50px 0;
+    border-bottom: 10px solid #25f;
     display: inline-block;
+    padding-bottom: 5px;
 }
 
 h2 {}
@@ -51,6 +60,7 @@ h3 {
     text-orientation: upright;
     writing-mode: vertical-lr;
     position: absolute;
+    padding-bottom: 14px;
 }
 
 .site-description .title-horizontal {
@@ -72,10 +82,11 @@ h3 {
 
 .site-main {
     background-color: #F4F0E6;
-    margin-left: 115px;
-    margin-top: 125px;
+    margin-left: 139px;
+    margin-top: 130px;
     position: relative;
-    padding: 2em;
+    padding: 20px;
+    margin-right: 20px;
     transition: margin-left 0.5s ease-in-out;
 }
 
@@ -85,8 +96,8 @@ h3 {
 }
 
 .menu-toggle {
-    left: -133px;
-    top: -50px;
+    left: -114px;
+    top: -98px;
     color: #25f;
     display: block;
     position: absolute;
@@ -103,7 +114,7 @@ h3 {
 }
 
 .nav-is-open {
-    margin-left: 390px;
+    margin-left: 410px;
 }
 
 .video-homepage-collection {
@@ -170,6 +181,10 @@ h3 {
 
 .post-6 .wp-block-cover .wp-block-cover__image-background {
     height: 150%;
+}
+
+.entry-content {
+    margin: 0;
 }
 
 .entry-content ul {
@@ -265,10 +280,6 @@ h3 {
 
     h2 {
         font-size: 1.7rem;
-    }
-
-    .page {
-        margin: 0;
     }
 
     .site-main {
