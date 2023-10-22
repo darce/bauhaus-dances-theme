@@ -303,6 +303,10 @@ h3 {
         font-size: 24pt;
     }
 
+    .site-description .title-vertical {
+        padding: 0
+    }
+
     .nav-is-open {
         margin-left: 300px;
     }
