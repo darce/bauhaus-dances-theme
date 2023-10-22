@@ -17,7 +17,7 @@ h3 {
 
 h1 {
     /* margin: 20px 0 50px 0; */
-    border-bottom: 5px solid blue;
+    border-bottom: 5px solid #25f;
     display: inline-block;
 }
 
@@ -36,17 +36,17 @@ h3 {
 
 .site-description {
     text-transform: uppercase;
-    z-index: 99999;
     display: block;
+    cursor: pointer;
 }
 
 .site-description .title-vertical {
     background-color: white;
     font-family: 'Urbanist', sans-serif;
-    font-size: 36pt;
+    font-size: 30pt;
     font-weight: 600;
-    left: 50px;
-    top: 60px;
+    left: 56px;
+    top: 20px;
     border-bottom: 10px solid red;
     text-orientation: upright;
     writing-mode: vertical-lr;
@@ -54,12 +54,12 @@ h3 {
 }
 
 .site-description .title-horizontal {
-    font-size: 36pt;
+    font-size: 30pt;
     position: absolute;
-    top: 108px;
-    left: 41px;
+    top: 62px;
+    left: 46px;
     background-color: white;
-    padding: 0 15px 0 0;
+    padding: 0;
     font-family: 'Urbanist';
     font-weight: 600;
 }
@@ -72,10 +72,11 @@ h3 {
 
 .site-main {
     background-color: #F4F0E6;
-    margin-left: 110px;
-    margin-top: 185px;
+    margin-left: 115px;
+    margin-top: 125px;
     position: relative;
     padding: 2em;
+    transition: margin-left 0.5s ease-in-out;
 }
 
 .home .site-main {
@@ -84,19 +85,16 @@ h3 {
 }
 
 .menu-toggle {
+    left: -133px;
+    top: -50px;
+    color: #25f;
+    display: block;
     position: absolute;
-    top: -155px;
-    left: -120px;
     border: 0;
-    background: transparent;
-    padding: 20px;
+    background-color: transparent;
+    padding: 0;
     margin: 0;
-    font-size: 2rem;
-    color: #4444ee;
-}
-
-.site-main {
-    transition: margin-left 0.5s ease-in-out;
+    font-size: 2.1rem;
 }
 
 .home .nav-menu {
@@ -105,7 +103,7 @@ h3 {
 }
 
 .nav-is-open {
-    margin-left: 410px;
+    margin-left: 390px;
 }
 
 .video-homepage-collection {
@@ -119,7 +117,6 @@ h3 {
 
 .video-homepage-media {
     width: 100%;
-    min-width: 400px;
     transition: opacity 0.5s ease-in
 }
 
@@ -130,7 +127,7 @@ h3 {
 .video-homepage-caption h3 {
     margin-top: 0;
     font-size: 1.3rem;
-    border-bottom: 5px solid #4444ee;
+    border-bottom: 5px solid #25f;
 }
 
 .video-homepage-item:hover .video-homepage-metadata {
@@ -147,13 +144,6 @@ h3 {
     font-size: 1rem;
     z-index: 10;
 }
-
-/* For every third item starting from the 1st (i.e., 1st, 4th, 7th, etc.) */
-/* .video-homepage-item:nth-child(3n+1) .video-homepage-media:hover+.video-homepage-metadata {
-    left: 100%;
-    left: 0;
-    top: 100%;
-} */
 
 .is-dimmed {
     opacity: 0.1;
@@ -193,10 +183,10 @@ h3 {
 /** Decorative circles */
 .hero-decoration-container {
     position: absolute;
-    top: 25px;
-    right: 0;
-    transform: translate(-100px, 30px);
+    top: 11px;
+    right: 100px;
     margin: 0 20px 0 0;
+    cursor: pointer;
 }
 
 .hero-decoration-circle {
@@ -246,14 +236,14 @@ h3 {
 
 /* Hover link color - Dark Blue */
 .nav-menu .menu-item a:hover {
-    color: #0000ee;
-    border-bottom: 3px solid #00e;
+    color: #25f;
+    border-bottom: 3px solid #25f;
     margin-bottom: 0;
 }
 
 .home .nav-menu .menu-item a:hover {
-    color: #4444ee;
-    border-bottom: 3px solid #4444ee;
+    color: #25f;
+    border-bottom: 3px solid #25f;
 }
 
 /** Media queries */
@@ -313,23 +303,19 @@ h3 {
     }
 
     .menu-toggle {
-        margin-left: -44px;
-        top: -190px;
+        left: -2px;
+        top: -160px;
         color: red;
+        font-size: 2.1rem;
+    }
+
+    .hero-decoration-container {
+        top: 40px;
     }
 
     .video-homepage-collection {
         grid-template-columns: 1fr;
     }
-
-    /* Adjust nth-child selector for mobile (every item) */
-    /* .video-homepage-item .video-homepage-media:hover+.video-homepage-metadata {
-        display: block;
-        position: static;
-        top: auto;
-        right: auto;
-        left: auto;
-    } */
 
     .wp-block-cover {
         min-height: 300px;

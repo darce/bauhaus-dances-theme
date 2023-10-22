@@ -26,17 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const handleMouseover = (e) => {
-        /** video is playing */
-        /** video is not playing */
-        e.target.classList.remove('is-dimmed')
+        const video = e.target;
+        // On mouseover, unconditionally remove 'is-dimmed' from the target video
+        video.classList.remove('is-dimmed');
     }
 
     const handleMouseout = (e) => {
-        /** video is playing */
-        /** video is not playing */
-        const video = e.target
-        if (!video.classList.contains('is-playing')) {
-            e.target.classList.add('is-dimmed')
+        const video = e.target;
+        const siblings = [...video.parentElement.parentElement.children].filter(el => el !== video.parentElement && el.querySelector('.video-homepage-media'));
+
+        // Check if any sibling video has the 'is-playing' class
+        const hasPlayingSibling = siblings.some(sibling => sibling.querySelector('.video-homepage-media').classList.contains('is-playing'));
+
+        // If a sibling video is playing and the current video is not playing, dim this video
+        if (hasPlayingSibling && !video.classList.contains('is-playing')) {
+            video.classList.add('is-dimmed');
         }
     }
 
