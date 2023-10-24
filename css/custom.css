@@ -67,11 +67,12 @@ h3 {
     font-size: 30pt;
     position: absolute;
     top: 62px;
-    left: 46px;
+    left: 42px;
     background-color: white;
     padding: 0;
     font-family: 'Urbanist';
     font-weight: 600;
+    letter-spacing: 6px;
 }
 
 .home .site-description .title-horizontal,
@@ -96,7 +97,7 @@ h3 {
 }
 
 .menu-toggle {
-    left: -114px;
+    left: -116px;
     top: -98px;
     color: #25f;
     display: block;
