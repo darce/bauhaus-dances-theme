@@ -1,8 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,400;0,900;1,100;1,400;1,900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0&family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300;1,700&display=swap');
 
+:root {
+    --clr-pale-beige: #F4F0E6;
+    --clr-blue-primary: #4169e1;
+    --clr-blue-lighter: #25f;
+    --clr-red-primary: red;
+
+    --space-gap: 2px;
+    --space-rythm: 5px;
+    --space-medium: 10px;
+    --space-large: 20px;
+
+    --size-x-large: 2.1rem;
+    --size-large: 1.8rem;
+    --size-medium: 1.5rem;
+    --size-default: 1.2rem;
+
+    --border-heading: var(--space-rythm) solid var(--clr-blue-lighter);
+    --border-sub: var(--space-gap) solid var(--clr-blue-lighter);
+}
 
 body {
-    margin: 20px;
+    margin: var(--space-large);
 }
 
 body.home {
@@ -13,30 +32,56 @@ body.home {
     margin: 0;
 }
 
-mark {
-    display: inline-block;
+.site-main header {
+    padding-bottom: var(--space-large);
+}
+
+/* Typography
+--------------------------------------------- */
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+    color: #404040;
+    font-family: 'Roboto', sans-serif;
+    font-size: var(--size-default);
+    line-height: 1.5;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 400;
+    display: inline-block;
     text-transform: uppercase;
+    padding: var(--space-medium) 0;
+    margin: 0;
+    clear: both;
 }
 
 h1 {
-    margin: 20px 0 50px 0;
-    border-bottom: 10px solid #25f;
-    display: inline-block;
-    padding-bottom: 5px;
+    margin: 0;
+    font-size: var(--size-x-large);
+    border-bottom: var(--border-heading);
+    padding-bottom: var(--space-rythm);
 }
 
-h2 {}
+h2 {
+    font-size: var(--size-large)
+}
+
+.wp-block-cover h2 {
+    display: block;
+}
 
 h3 {
-    font-weight: 400;
-    font-size: 22pt;
-    /* border-bottom: 5px solid black; */
-    display: inline-block;
+    font-size: var(--size-medium);
 }
 
 .site-title {
@@ -49,6 +94,7 @@ h3 {
     cursor: pointer;
 }
 
+/** Layout */
 .site-description .title-vertical {
     background-color: white;
     font-family: 'Urbanist', sans-serif;
@@ -96,17 +142,67 @@ h3 {
     padding: 0;
 }
 
+.wp-block-cover__inner-container mark {
+    padding: var(--space-large);
+    background-color: white;
+    float: right;
+}
+
+.wp-block-cover__inner-container blockquote {
+    padding: var(--space-large);
+    background-color: white;
+    float: right;
+    max-width: 50%;
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+.wp-block-cover__inner-container cite {
+    font-size: 0.9rem;
+}
+
+/** Navigation */
+
+.nav-menu .menu-item a,
+.nav-menu .menu-item a:visited {
+    color: black;
+    display: inline-block;
+    margin-bottom: var(--space-medium);
+    padding-bottom: var(--space-rythm);
+}
+
+.home .nav-menu .menu-item a {
+    color: white;
+}
+
+/* Hover link color - Dark Blue */
+.nav-menu .menu-item a:hover {
+    color: var(--clr-blue-lighter);
+    border-bottom: var(--border-sub);
+    margin-bottom: calc(var(--space-medium) - var(--space-gap))
+}
+
+.main-navigation {
+    position: absolute;
+    left: 140px;
+    top: 125px;
+}
+
 .menu-toggle {
     left: -116px;
     top: -98px;
-    color: #25f;
+    color: var(--clr-blue-lighter);
     display: block;
     position: absolute;
     border: 0;
     background-color: transparent;
     padding: 0;
     margin: 0;
-    font-size: 2.1rem;
+    font-size: var(--size-large);
+}
+
+.main-navigation.toggled ul {
+    display: block;
 }
 
 .home .nav-menu {
@@ -117,6 +213,8 @@ h3 {
 .nav-is-open {
     margin-left: 410px;
 }
+
+/** Homepage Layout */
 
 .video-homepage-collection {
     display: grid;
@@ -238,33 +336,19 @@ h3 {
     height: 70px;
 }
 
-/** Menu */
-.nav-menu .menu-item a,
-.nav-menu .menu-item a:visited {
-    color: black;
-    display: inline-block;
-    margin-bottom: 3px;
-}
-
-.home .nav-menu .menu-item a {
-    color: white;
-}
-
-/* Hover link color - Dark Blue */
-.nav-menu .menu-item a:hover {
-    color: #25f;
-    border-bottom: 3px solid #25f;
-    margin-bottom: 0;
-}
-
-.home .nav-menu .menu-item a:hover {
-    color: #25f;
-    border-bottom: 3px solid #25f;
-}
 
 /** Media queries */
+@media screen and (min-width: 37.5em) {
+    .main-navigation ul {
+        display: block;
+    }
+}
 
-@media (max-width: 1100px) {
+@media screen and (max-width: 1100px) {
+    .wp-block-cover__inner-container blockquote {
+        max-width: unset;
+    }
+
     .video-homepage-collection {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -274,7 +358,7 @@ h3 {
     }
 }
 
-@media (max-width: 749px) {
+@media screen and (max-width: 749px) {
     h1 {
         font-size: 2.1rem;
     }

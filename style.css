@@ -403,8 +403,8 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: 'Roboto', sans-serif;
-	font-size: 1.3rem;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 1rem;
 	line-height: 1.5;
 }
 
@@ -414,17 +414,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Urbanist', sans-serif;
-	font-weight: 400;
 	clear: both;
-}
-
-h1 {
-	font-size: 3rem;
-}
-
-h2 {
-	font-size: 2.17rem
 }
 
 p {
@@ -659,9 +649,7 @@ textarea {
 --------------------------------------------- */
 .main-navigation {
 	display: block;
-	position: absolute;
-	left: 140px;
-	top: 125px;
+	width: 100%;
 }
 
 .main-navigation ul {
@@ -702,7 +690,6 @@ textarea {
 
 .main-navigation li {
 	position: relative;
-	line-height: 2.2;
 }
 
 .main-navigation a {
@@ -719,12 +706,11 @@ textarea {
 @media screen and (min-width: 37.5em) {
 
 	.menu-toggle {
-		/* display: none; */
+		display: none;
 	}
 
 	.main-navigation ul {
-		display: inline-block;
-		background: white;
+		display: flex;
 	}
 }
 
@@ -761,7 +747,7 @@ textarea {
 
 .post,
 .page {
-	margin: 1em;
+	margin: 0 0 1.5em;
 }
 
 .updated:not(.published) {
