@@ -35,3 +35,39 @@ function bauhaus_dances_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'bauhaus_dances_pingback_header' );
+
+function get_attachment_id_by_filename ($filename) {
+	// Extract relative path from the URL
+	$upload_dir = wp_upload_dir();
+	$relative_path = str_replace($upload_dir['baseurl'] . '/' , '', $filename);
+
+	$filetype = wp_check_filetype($relative_path);
+	if (!$filetype['type']) {
+		return false; // Not a valid file type
+	}
+
+	// Query attachments for the specified filename
+	$args = array(
+		'post_type' => 'attachment',
+		'post_status' =>  'inherit',
+		'posts_per_page' => 1,
+		'meta_query' => array(
+			array(
+				'key' => '_wp_attached_file',
+				'value' => $relative_path,
+				'compare' => 'LIKE',
+			)
+		)
+	);
+
+	$query = new WP_Query( $args );
+
+	if($query->have_posts() ) {
+		while ($query-> have_posts()) {
+			$query->the_post();
+			return get_the_ID();
+		}
+		wp_reset_postdata();
+	}
+	return false;
+}
