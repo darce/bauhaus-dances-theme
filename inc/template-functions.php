@@ -41,6 +41,10 @@ function get_attachment_id_by_filename ($filename) {
 	$upload_dir = wp_upload_dir();
 	$relative_path = str_replace($upload_dir['baseurl'] . '/' , '', $filename);
 
+	/** Extract filename without extension */
+	$file_info = pathinfo($relative_path);
+	$filename_base = $file_info['filename'];
+
 	$filetype = wp_check_filetype($relative_path);
 	if (!$filetype['type']) {
 		return false; // Not a valid file type
@@ -54,7 +58,7 @@ function get_attachment_id_by_filename ($filename) {
 		'meta_query' => array(
 			array(
 				'key' => '_wp_attached_file',
-				'value' => $relative_path,
+				'value' => $filename_base,
 				'compare' => 'LIKE',
 			)
 		)

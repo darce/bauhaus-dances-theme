@@ -29,7 +29,7 @@ if ($videos_query->have_posts()) :
         // getting the image for the video poster,
         $video_caption = get_the_excerpt();
         $video_description = get_the_content();
-        $poster_url = $image_filename = str_replace('.mp4', '.jpg', $video_url);
+        $poster_url = $image_filename = str_replace('.mp4', '.png', $video_url);
         $image_id = get_attachment_id_by_filename($image_filename);
 
         if ($image_id) {
