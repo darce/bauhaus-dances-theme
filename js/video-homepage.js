@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             element.classList.remove('is-dimmed')
             element.classList.add('is-playing')
             element.play()
+            element.currentTime = 1
         }
 
         else {
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
             video.classList.remove('is-playing')
         });
         const video = e.target
-        video.pause()
         video.load()
     }
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             video.classList.add('is-dimmed')
             video.classList.remove('is-playing')
             video.pause()
-            video.load()
+            // video.load()
         })
     }
 
