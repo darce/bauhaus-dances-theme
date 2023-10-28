@@ -1,36 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // const videoElements = document.querySelectorAll('.video-homepage-media')
-
     /** Video collection */
     const videoItems = document.querySelectorAll('.video-homepage-item')
     const mediaItems = document.querySelectorAll('.video-homepage-media')
 
     if (!videoItems) return
 
-    const helperPlayVideo = (mediaElement) => {
-        const parentElement = mediaElement.parentElement
-        const posterElement = parentElement.querySelector('.video-homepage-poster')
-        posterElement.classList.add('hide')
-        helperDimVideos(videoItems)
-        parentElement.classList.remove('is-dimmed')
-        mediaElement.classList.add('is-playing')
-        mediaElement.play()
+    const handleTogglePlayback = (e) => {
+        const element = e.target
+        const mediaItem = element.closest('.video-homepage-item').querySelector('.video-homepage-media')
+        /** Toggle playback */
+        if (!mediaItem.classList.contains('is-playing')) {
+            helperPlayVideo(mediaItem)
+        } else {
+            helperPauseVideo(mediaItem)
+        }
     }
 
-    const helperPauseVideo = (mediaElement) => {
-        const parentElement = mediaElement.parentElement
+    const handleMouseover = (e) => {
+        const videoItem = e.target.closest('.video-homepage-item')
+        /** On mouseover, unconditionally remove 'is-dimmed' from the target video. */
+        videoItem.classList.remove('is-dimmed')
+        /** Hide metadata when hovering off video item */
+        if (!e.target.closest('.video-homepage-metadata')) {
+            videoItem.classList.add('is-hovered')
+        }
+    }
+
+    const handleMouseout = (e) => {
+        const videoItem = e.target.closest('.video-homepage-item')
+        videoItem.classList.remove('is-hovered')
+        const mediaItemPlaying = document.querySelector('.is-playing')
+        if (mediaItemPlaying) {
+            helperDimVideos(videoItems)
+        }
+    }
+
+    const handleVideoEnded = (e) => {
+        const videoItem = e.target.closest('.video-homepage-item')
+        const posterElement = videoItem.querySelector('.video-homepage-poster');
+        if (posterElement) posterElement.classList.remove('hide')
+        helperUndimVideos(videoItems)
+        mediaItems.forEach(mediaItem => mediaItem.classList.remove('is-playing'))
+    }
+
+    const helperPlayVideo = (mediaItem) => {
+        const videoItem = mediaItem.closest('.video-homepage-item')
+        const posterElement = videoItem.querySelector('.video-homepage-poster')
+        posterElement.classList.add('hide')
+        helperDimVideos(videoItems)
+        /** Stop other videos playing */
+        videoItems.forEach(videoItem => {
+            const mediaItem = videoItem.querySelector('.video-homepage-media')
+            if (mediaItem.classList.contains('is-playing')) {
+                helperPauseVideo(mediaItem)
+            }
+        })
+        videoItem.classList.remove('is-dimmed')
+        mediaItem.classList.add('is-playing')
+        mediaItem.play()
+    }
+
+    const helperPauseVideo = (mediaItem) => {
+        const parentElement = mediaItem.parentElement
         const posterElement = parentElement.querySelector('.video-homepage-poster')
         posterElement.classList.remove('hide')
         helperUndimVideos(videoItems)
-        mediaElement.classList.remove('is-playing')
-        mediaElement.pause()
+        mediaItem.classList.remove('is-playing')
+        mediaItem.pause()
     }
 
     const helperDimVideos = (videoItems) => {
         videoItems.forEach(videoItem => {
             const mediaItem = videoItem.querySelector('.video-homepage-media')
-            videoItem.classList.add('is-dimmed')
-            mediaItem.pause()
+            if (!mediaItem.classList.contains('is-playing')) {
+                videoItem.classList.add('is-dimmed')
+                mediaItem.pause()
+            }
         })
     }
 
@@ -40,93 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    const handleTogglePlayback = (e) => {
-        const element = e.target
-        let mediaItem
-        if (element.classList.contains('video-homepage-poster')) {
-            mediaItem = element.parentElement.querySelector('.video-homepage-media')
-        } else if (element.classList.contains('video-homepage-media')) {
-            mediaItem = element
-        }
-
-        /** Toggle playback */
-        if (!mediaItem.classList.contains('is-playing')) {
-            helperPlayVideo(mediaItem)
-        } else {
-            helperPauseVideo(mediaItem)
-        }
-    }
-
-    const handleVideoEnded = (e) => {
-        const video = e.target;
-        const parentElement = video.parentElement;
-        const poster = parentElement.querySelector('.video-homepage-poster');
-
-        // Show the poster image when video is paused
-        if (poster) poster.style.display = 'block';
-
-        videoElements.forEach(video => {
-            video.classList.remove('is-dimmed')
-            video.classList.remove('is-playing')
-        });
-        // video.load()
-    }
-
-    const handleMouseover = (e) => {
-        const element = e.target
-        let mediaItem
-        if (element.classList.contains('video-homepage-poster')) {
-            mediaItem = element.parentElement.querySelector('.video-homepage-media')
-        } else if (element.classList.contains('video-homepage-media')) {
-            mediaItem = element
-        }
-        /** On mouseover, unconditionally remove 'is-dimmed' from the target video. */
-        mediaItem.parentElement.classList.remove('is-dimmed')
-        /** Add class to parent to toggle visibility of metadata element
-        when hovering over the metadata itself. */
-        mediaItem.parentElement.classList.add('is-hovered')
-    }
-
-    const handleMouseout = (e) => {
-        const element = e.target
-        const isPlaying = document.querySelectorAll('.is-playing')
-        /** If a video is playing, dim current target if it's not the video playing */
-        if (isPlaying.length) {
-            console.log('something is playing')
-        }
-        // const siblings = [...video.parentElement.parentElement.children]
-        //     .filter(el => el !== video.parentElement && el.querySelector('.video-homepage-media'))
-
-        // // Check if any sibling video has the 'is-playing' class.
-        // const hasPlayingSibling = siblings.some(sibling => sibling.querySelector('.video-homepage-media').classList.contains('is-playing'))
-
-        // // If a sibling video is playing and the current video is not playing, dim this video.
-        // if (hasPlayingSibling && !video.classList.contains('is-playing')) {
-        //     video.classList.add('is-dimmed')
-        // }
-    }
-
-    const handleItemMouseout = (e) => {
-        const video = e.target
-        video.parentElement.classList.remove('is-hovered')
-    }
-
     videoItems.forEach(videoItem => {
-
         if ('ontouchstart' in window) {
             // Mobile device
-            // posterElement.addEventListener('click', handleTogglePlayback)
-            // videoItem.addEventListener('click', handleTogglePlayback)
+            videoItem.addEventListener('click', handleTogglePlayback)
         } else {
             // Non-mobile device
             videoItem.addEventListener('click', handleTogglePlayback)
-            // video.addEventListener('ended', handleVideoEnded)
             videoItem.addEventListener('mouseover', handleMouseover)
             videoItem.addEventListener('mouseout', handleMouseout)
-            /** Toggle visibility of metadata child when hovering
-             * over the metadata itself
-             */
-            // parentElement.addEventListener('mouseout', handleItemMouseout)
+            videoItem.querySelector('.video-homepage-media').addEventListener('ended', handleVideoEnded)
         }
     })
 })
