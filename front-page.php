@@ -37,16 +37,17 @@ if ($videos_query->have_posts()) :
             $poster_url = $medium_image_array[0];
         }
 
-        echo '<div class="video-homepage-item" data-video-index="' . $video_item_index . '" id="video_item_index-' . $video_item_index. '">';
-                echo '<video class="video-homepage-media" preload="auto" playsinline poster="' . $poster_url . '" src="'.$video_url.'">';
+        echo '<figure class="video-homepage-item" data-video-index="' . $video_item_index . '" id="video_item_index-' . $video_item_index. '">';
+            //echo '<img class="video-homepage-poster" src="'. $poster_url. '" alt="Video poster for '. $video_caption .'">';
+            echo '<video class="video-homepage-media" preload="auto" playsinline poster="'. $poster_url. '">';
                 echo '<source src="' . $video_url . '" type="video/mp4" />';
-                echo '</video>';
+            echo '</video>';
 
             echo '<div class="video-homepage-metadata">';
                 echo '<div class="video-homepage-caption"><h3>' . esc_html($video_caption) . '</h3></div>';
                 echo '<div class="video-homepage-description">' . esc_html($video_description) . '</div>';
             echo '</div>';
-        echo '</div>';
+        echo '</figure>';
         $video_item_index++; // Increment the counter
 
     endwhile;
