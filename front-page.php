@@ -38,7 +38,7 @@ if ($videos_query->have_posts()) :
         }
 
         echo '<figure class="video-homepage-item" data-video-index="' . $video_item_index . '" id="video_item_index-' . $video_item_index. '">';
-            //echo '<img class="video-homepage-poster" src="'. $poster_url. '" alt="Video poster for '. $video_caption .'">';
+            echo '<img class="video-homepage-poster" src="'. $poster_url. '" alt="Video poster for '. $video_caption .'">';
             echo '<video class="video-homepage-media" preload="auto" playsinline poster="'. $poster_url. '">';
                 echo '<source src="' . $video_url . '" type="video/mp4" />';
             echo '</video>';
