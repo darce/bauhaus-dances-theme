@@ -385,9 +385,9 @@ visibility when hover is on the metadata itself */
         width: 100%;
     }
 
-    .video-homepage-collection {
+    /* .video-homepage-collection {
         grid-template-columns: repeat(2, 1fr);
-    }
+    } */
 
     .post-19 .entry-content p>strong {
         font-weight: normal;
