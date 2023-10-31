@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         mediaItems.forEach(mediaItem => mediaItem.classList.remove('is-playing'))
     }
 
-    const handleCanPlay = (e) => {
-        console.log(e.target)
+    const handleIsPlaying = (e) => {
+        console.log(e)
         const videoItem = e.target.closest('.video-homepage-item')
         const loader = videoItem.querySelector('.video-homepage-loader')
         loader.classList.add('hide')
@@ -62,8 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         videoItem.classList.remove('is-dimmed')
         mediaItem.classList.add('is-playing')
-        const loader = videoItem.querySelector('.video-homepage-loader')
-        loader.classList.add('hide')
         mediaItem.play()
     }
 
@@ -104,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             videoItem.addEventListener('mouseout', handleMouseout)
         }
         mediaItem.addEventListener('ended', handleVideoEnded)
-        mediaItem.addEventListener('canplaythrough', handleCanPlay)
-        mediaItem.addEventListener('canplay', handleCanPlay)
+        mediaItem.addEventListener('playing', handleIsPlaying)
     })
 })
