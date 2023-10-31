@@ -29,12 +29,19 @@ if ($videos_query->have_posts()) :
         // getting the image for the video poster,
         $video_caption = get_the_excerpt();
         $video_description = get_the_content();
+
+        /** Get poster image url from filename */
         $poster_url = $image_filename = str_replace('.mp4', '.png', $video_url);
         $image_id = get_attachment_id_by_filename($image_filename);
 
+        /** Gesture Dance exception */
+        $gesture_dance_image_id = get_attachment_id_by_filename('Gesture-Dance.jpg');
+        $gesture_dance_image_url = wp_get_attachment_image_src($gesture_dance_image_id, 'medium')[0];
+        $gesture_dance_caption = get_post_field('post_excerpt', $gesture_dance_image_id);
+        $gesture_dance_description =  get_post_field('post_content', $gesture_dance_image_id);
+
         if ($image_id) {
-            $medium_image_array = wp_get_attachment_image_src($image_id, 'medium');
-            $poster_url = $medium_image_array[0];
+            $poster_url = wp_get_attachment_image_src($image_id, 'medium')[0];
         }
 
         echo '<figure class="video-homepage-item" data-video-index="' . $video_item_index . '" id="video_item_index-' . $video_item_index. '">';
@@ -54,9 +61,17 @@ if ($videos_query->have_posts()) :
             echo '</div>';
         echo '</figure>';
         $video_item_index++; // Increment the counter
-
     endwhile;
+    echo '<figure class="video-homepage-item">';
+    echo '<img class="video-homepage-poster" src="'. $gesture_dance_image_url. '" alt="Video poster for Gesture Dance">';
+    echo '<video class="video-homepage-media" poster="'.$gesture_dance_image_url.'"></video>';
+    echo '<div class="video-homepage-metadata">';
+    echo '<div class="video-homepage-caption"><h3>'. esc_html($gesture_dance_caption).'</h3></div>';
+    echo    '<div class="video-homepage-description">' . esc_html($gesture_dance_description) . '</div>';
+    echo '</div>';
+    echo '</figure>';
     echo '</div>'; // End Grid container
+
     wp_reset_postdata();
 endif;
 ?>

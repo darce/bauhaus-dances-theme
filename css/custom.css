@@ -137,7 +137,8 @@ h3 {
     color: white;
 }
 
-.site-main {
+.site-main,
+.site-info {
     background-color: var(--clr-pale-beige);
     margin-left: 139px;
     margin-top: 130px;
@@ -147,9 +148,17 @@ h3 {
     transition: margin-left 0.5s ease-in-out;
 }
 
-.home .site-main {
+.home .site-main,
+.home .site-info {
     background-color: black;
     padding: 0;
+}
+
+#colophon span.site-info {
+    padding: calc(var(--space-large)*2) var(--space-large);
+    margin-top: unset;
+    display: block;
+    font-size: 0.8rem;
 }
 
 .wp-block-cover__inner-container mark {

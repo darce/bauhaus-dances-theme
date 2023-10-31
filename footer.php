@@ -12,6 +12,9 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
+		<span class = "site-info">
+		&copy; <?php echo date('Y'); ?> Debra McCall
+		</span>
 		<!-- <div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'bauhaus-dances' ) ); ?>">
 				<?php
