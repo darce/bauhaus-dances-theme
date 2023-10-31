@@ -240,6 +240,7 @@ h3 {
 .video-homepage-item {
     position: relative;
     margin: 0;
+    z-index: 1;
 }
 
 .video-homepage-poster {
@@ -250,6 +251,7 @@ h3 {
     height: 100%;
     /* To maintain aspect ratio */
     object-fit: cover;
+    z-index: 10;
 }
 
 .video-homepage-media {
@@ -260,19 +262,7 @@ h3 {
 }
 
 .video-homepage-metadata {
-    opacity: 0;
-    display: block;
-    position: absolute;
-    color: #fff;
-    background-color: black;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    height: auto;
-    padding: 0 1rem 1rem 1rem;
-    overflow: hidden;
-    font-size: 1rem;
-    transition: opacity 0.3s ease-in;
+    display: none;
 }
 
 .video-homepage-caption h3 {
@@ -285,22 +275,56 @@ h3 {
 }
 
 .video-homepage-item:hover .video-homepage-metadata {
-    opacity: 1;
+    display: block;
+    position: absolute;
+    color: #fff;
+    background-color: black;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: auto;
+    padding: 0 1rem 1rem 1rem;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.video-homepage-loader {
+    position: absolute;
+    height: 100px;
+    padding: var(--space-large);
+    /* Center the circle */
+    /* Animate the circle */
+    animation: rotateCircle 5s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /** Used in addition to :hover to toggle metadata 
 visibility when hover is on the metadata itself */
 .is-hovered {
-    z-index: 1;
+    z-index: 10;
 }
 
 .is-dimmed {
     opacity: 0.3;
+    z-index: 0;
 }
 
 .hide {
     display: none;
 }
+
+/** Gallery */
+
 
 /** Parallax **/
 .wp-block-cover {

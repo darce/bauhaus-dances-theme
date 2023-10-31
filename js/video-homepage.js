@@ -2,12 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     /** Video collection */
     const videoItems = document.querySelectorAll('.video-homepage-item')
     const mediaItems = document.querySelectorAll('.video-homepage-media')
-
     if (!videoItems) return
 
     const handleTogglePlayback = (e) => {
-        const element = e.target
-        const mediaItem = element.closest('.video-homepage-item').querySelector('.video-homepage-media')
+        const mediaItem = e.target.closest('.video-homepage-item').querySelector('.video-homepage-media')
         /** Toggle playback */
         if (!mediaItem.classList.contains('is-playing')) {
             helperPlayVideo(mediaItem)
@@ -43,6 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         mediaItems.forEach(mediaItem => mediaItem.classList.remove('is-playing'))
     }
 
+    const handleCanPlay = (e) => {
+        console.log(e.target)
+        const videoItem = e.target.closest('.video-homepage-item')
+        const loader = videoItem.querySelector('.video-homepage-loader')
+        loader.classList.add('hide')
+    }
+
     const helperPlayVideo = (mediaItem) => {
         const videoItem = mediaItem.closest('.video-homepage-item')
         const posterElement = videoItem.querySelector('.video-homepage-poster')
@@ -57,6 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         videoItem.classList.remove('is-dimmed')
         mediaItem.classList.add('is-playing')
+        const loader = videoItem.querySelector('.video-homepage-loader')
+        loader.classList.add('hide')
         mediaItem.play()
     }
 
@@ -86,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     videoItems.forEach(videoItem => {
+        const mediaItem = videoItem.querySelector('.video-homepage-media')
         if ('ontouchstart' in window) {
             // Mobile device
             videoItem.addEventListener('click', handleTogglePlayback)
@@ -94,7 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
             videoItem.addEventListener('click', handleTogglePlayback)
             videoItem.addEventListener('mouseover', handleMouseover)
             videoItem.addEventListener('mouseout', handleMouseout)
-            videoItem.querySelector('.video-homepage-media').addEventListener('ended', handleVideoEnded)
         }
+        mediaItem.addEventListener('ended', handleVideoEnded)
+        mediaItem.addEventListener('canplaythrough', handleCanPlay)
+        mediaItem.addEventListener('canplay', handleCanPlay)
     })
 })

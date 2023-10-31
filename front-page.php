@@ -39,7 +39,12 @@ if ($videos_query->have_posts()) :
 
         echo '<figure class="video-homepage-item" data-video-index="' . $video_item_index . '" id="video_item_index-' . $video_item_index. '">';
             echo '<img class="video-homepage-poster" src="'. $poster_url. '" alt="Video poster for '. $video_caption .'">';
-            echo '<video class="video-homepage-media" preload="auto" playsinline poster="'. $poster_url. '">';
+
+            echo '<svg class="video-homepage-loader" viewBox="0 0 101 101" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 50 0 A 50 50 0 1 1 0 50" fill="none" stroke="white" stroke-width="2"/>
+                    </svg>';
+
+            echo '<video class="video-homepage-media" preload="metadata" playsinline poster="'. $poster_url. '">';
                 echo '<source src="' . $video_url . '" type="video/mp4" />';
             echo '</video>';
 
