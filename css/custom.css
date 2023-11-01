@@ -383,6 +383,7 @@ visibility when hover is on the metadata itself */
 
 .entry-content {
     margin: 0;
+    padding-bottom: var(--space-large);
 }
 
 .entry-content ul {
@@ -498,8 +499,13 @@ visibility when hover is on the metadata itself */
         padding: 0
     }
 
+    #colophon span.site-info {
+        margin: 0;
+    }
+
     .nav-is-open {
         margin-left: 300px;
+        min-width: 300px;
     }
 
     .main-navigation,
