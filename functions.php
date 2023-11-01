@@ -151,13 +151,11 @@ function bauhaus_dances_scripts() {
 	wp_enqueue_style( 'bauhaus-dances-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'bauhaus-dances-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'bauhaus-dances-navigation', get_template_directory_uri() . '/js/navigation.js', array(), time(), true );
-	wp_enqueue_script( 'bauhaus-dances-video-homepage', get_template_directory_uri() . '/js/video-homepage.js', array(), _S_VERSION, true );
+	wp_enqueue_script('scripts.min.js', get_template_directory_uri() . '/build/js/scripts.min.js', array(), _S_VERSION, true);
 
-	wp_enqueue_style( 'custom', get_template_directory_uri() . '/css/custom.css', array(), time());
+	wp_enqueue_style( 'styles.min.css', get_template_directory_uri() . '/build/css/styles.min.css', array(), _S_VERSION);
 
-    wp_enqueue_script('rellax', get_template_directory_uri() . '/js/rellax.min.js', array(), '1.0', true);
-	wp_add_inline_script('rellax', 'document.addEventListener("DOMContentLoaded", 
+	wp_add_inline_script('scripts.min.js', 'document.addEventListener("DOMContentLoaded", 
 	function() { 
 		var rellax = new Rellax(".wp-block-cover__image-background", 
 			{speed: -3, 

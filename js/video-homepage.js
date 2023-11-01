@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const handleIsPlaying = (e) => {
-        console.log(e)
         const videoItem = e.target.closest('.video-homepage-item')
         const loader = videoItem.querySelector('.video-homepage-loader')
         loader.classList.add('hide')
