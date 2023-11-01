@@ -65,7 +65,11 @@
         </div><!-- .site-branding -->
 
         <nav id="site-navigation" class="main-navigation">
-            <button class="menu-toggle material-symbols-outlined" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'menu', 'bauhaus-dances' ); ?></button>
+            <div class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <div class="menu-toggle-stroke menu-toggle-stroke-top">&nbsp;</div>
+                <div class="menu-toggle-stroke menu-toggle-stroke-middle">&nbsp;</div>
+                <div class="menu-toggle-stroke menu-toggle-stroke-bottom">&nbsp;</div>
+            </div>
             <?php
             wp_nav_menu(
                 array(

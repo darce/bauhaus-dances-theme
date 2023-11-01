@@ -11,11 +11,12 @@
     if (!siteNavigation) {
         return;
     }
-    const button = siteNavigation.getElementsByTagName('button')[0];
+    const button = siteNavigation.getElementsByClassName('menu-toggle')[0];
     // Return early if the button doesn't exist.
     if ('undefined' === typeof button) {
         return;
     }
+
     const menu = siteNavigation.getElementsByTagName('ul')[0];
     // Hide menu toggle button if menu is empty and return early.
     if ('undefined' === typeof menu) {
@@ -80,11 +81,9 @@
     const toggleMenu = (e) => {
         e.stopPropagation()
         mainElement.classList.toggle('nav-is-open')
-        menuToggle.innerHTML === 'menu' ? menuToggle.innerHTML = 'close' : menuToggle.innerHTML = 'menu'
-
-        siteNavigation.classList.toggle('toggled');
-
+        menuToggle.classList.toggle('active')
         // Toggle the .toggled class and the aria-expanded value each time the button is clicked.
+        siteNavigation.classList.toggle('toggled');
         if (button.getAttribute('aria-expanded') === 'true') {
             button.setAttribute('aria-expanded', 'false');
         } else {
@@ -100,7 +99,7 @@
             siteNavigation.classList.remove('toggled');
             mainElement.classList.remove('nav-is-open')
             button.setAttribute('aria-expanded', 'false');
-            menuToggle.innerHTML = 'menu'
+            menuToggle.classList.remove('active')
         }
     });
 

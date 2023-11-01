@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,400;0,900;1,100;1,400;1,900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0&family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,400;0,900;1,100;1,400;1,900&family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300;1,700&display=swap');
 
 :root {
     --clr-pale-beige: #F4F0E6;
@@ -22,6 +22,7 @@
 
 body {
     margin: var(--space-large);
+    font-family: sans-serif;
 }
 
 body.home {
@@ -117,6 +118,7 @@ h3 {
     writing-mode: vertical-lr;
     position: absolute;
     padding-bottom: 14px;
+    cursor: pointer;
 }
 
 .site-description .title-horizontal {
@@ -129,6 +131,7 @@ h3 {
     font-family: 'Urbanist';
     font-weight: 600;
     letter-spacing: 6px;
+    cursor: pointer;
 }
 
 .home .site-description .title-horizontal,
@@ -143,8 +146,8 @@ h3 {
     margin-left: 139px;
     margin-top: 130px;
     position: relative;
-    padding: 20px;
-    margin-right: 20px;
+    padding: var(--space-large);
+    margin-right: var(--space-large);
     transition: margin-left 0.5s ease-in-out;
 }
 
@@ -156,9 +159,14 @@ h3 {
 
 #colophon span.site-info {
     padding: calc(var(--space-large)*2) var(--space-large);
-    margin-top: unset;
     display: block;
     font-size: 0.8rem;
+    background-color: white;
+}
+
+.home #colophon span.site-info {
+    background-color: black;
+    padding-left: 0;
 }
 
 .wp-block-cover__inner-container mark {
@@ -186,7 +194,6 @@ h3 {
 }
 
 /** Navigation */
-
 .nav-menu .menu-item a,
 .nav-menu .menu-item a:visited {
     color: black;
@@ -203,7 +210,7 @@ h3 {
 .nav-menu .menu-item a:hover {
     color: var(--clr-blue-lighter);
     border-bottom: var(--border-sub);
-    margin-bottom: calc(var(--space-medium) - var(--space-gap))
+    margin-bottom: calc(var(--space-medium) - var(--space-gap));
 }
 
 .main-navigation {
@@ -214,16 +221,32 @@ h3 {
 }
 
 .menu-toggle {
-    left: -116px;
-    top: -98px;
+    left: -113px;
+    top: -100px;
     color: var(--clr-blue-lighter);
     display: block;
     position: absolute;
-    border: 0;
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    font-size: var(--size-large);
+    cursor: pointer;
+}
+
+.menu-toggle .menu-toggle-stroke {
+    border-bottom: 3px solid;
+    width: 24px;
+    height: 7px;
+    transition: transform 0.1s ease-in;
+    cursor: pointer;
+}
+
+.menu-toggle.active .menu-toggle-stroke-top {
+    transform: translate(3px, 6px) rotate(45deg);
+}
+
+.menu-toggle.active .menu-toggle-stroke-middle {
+    opacity: 0;
+}
+
+.menu-toggle.active .menu-toggle-stroke-bottom {
+    transform: translate(0px, -8px) rotate(-45deg)
 }
 
 .main-navigation.toggled ul {
@@ -351,7 +374,7 @@ visibility when hover is on the metadata itself */
 
 .post-24 .wp-block-cover .wp-block-cover__image-background {
     height: 150%;
-    top: 20px;
+    top: var(--space-large);
 }
 
 .post-6 .wp-block-cover .wp-block-cover__image-background {
@@ -375,7 +398,7 @@ visibility when hover is on the metadata itself */
     position: absolute;
     top: 11px;
     right: 100px;
-    margin: 0 20px 0 0;
+    margin: 0 var(--space-large) 0 0;
     cursor: pointer;
 }
 
@@ -443,7 +466,7 @@ visibility when hover is on the metadata itself */
 
 @media screen and (max-width: 749px) {
     h1 {
-        font-size: 2.1rem;
+        font-size: var(--size-x-large);
     }
 
     h2 {
@@ -452,11 +475,11 @@ visibility when hover is on the metadata itself */
 
     .site-main {
         margin: 0;
-        padding: 0 20px;
+        padding: 0 var(--space-large);
     }
 
     .site-description {
-        padding: 2.5rem 0 0 20px;
+        padding: 2.5rem 0 0 var(--space-large);
     }
 
     .site-description .title-vertical,
@@ -481,15 +504,15 @@ visibility when hover is on the metadata itself */
 
     .main-navigation,
     .menu-toggle {
-        left: 20px;
+        left: var(--space-large);
         top: unset;
     }
 
     .menu-toggle {
         left: -2px;
         top: -160px;
-        color: red;
-        font-size: 2.1rem;
+        color: var(--clr-red-primary);
+        font-size: var(--size-x-large);
     }
 
     .hero-decoration-container {
