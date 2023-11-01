@@ -315,7 +315,7 @@ h3 {
     top: 100%;
     width: 100%;
     height: auto;
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 var(--space-medium) var(--space-medium) var(--space-medium);
     overflow: hidden;
     font-size: 1rem;
 }
