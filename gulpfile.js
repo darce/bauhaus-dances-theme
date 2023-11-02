@@ -5,9 +5,9 @@ const minifyCSS = require('gulp-clean-css')
 
 gulp.task('js', function () {
     return gulp.src([
-        'js/navigation.js',
         'js/rellax.min.js',
         'js/rellax-init.js',
+        'js/navigation.js',
         'js/video-homepage.js'
     ])
         .pipe(concat('scripts.min.js'))

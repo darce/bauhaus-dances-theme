@@ -4,6 +4,8 @@
  * Handles toggling the navigation menu for small screens and enables TAB key
  * navigation support for dropdown menus.
  */
+// import Rellax from 'rellax'
+
 (function () {
     const siteNavigation = document.getElementById('site-navigation');
 
