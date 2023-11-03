@@ -13,7 +13,7 @@
 
 	<footer id="colophon" class="site-footer">
 		<span class = "site-info">
-		&copy; <?php echo date('Y'); ?> Debra McCall
+		&copy; Debra McCall <?php echo date('Y'); ?>
 		</span><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
